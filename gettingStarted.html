@@ -1,0 +1,46 @@
+<html ng-app = "demoApp1">
+<head>
+<script src = "angular.min.js"></script>
+</head>
+<title>My Angular work</title>
+<body>
+	<div ng-view></div>
+<h1>I am loaded<h1>
+<a href = "mySecondView.html">click me</a>
+<script>
+
+var demoApp1 = angular.module('demoApp',[]);
+
+demoApp1.config(function ($routeProvider) {
+	$routeProvider.when('/', {
+        controller: 'myControl',
+        templateUrl: '/view1.html'
+    });
+	$routeProvider.when('/view2',
+	{
+		controller:'controllers',
+		templateUrl:'view2'
+	})
+	.otherwise({redirectTo: '/'});
+
+});
+
+var controllers = {};
+
+controllers.myControl = function($scope){
+$scope.list = ['hey','hello','how are you ?'];
+
+$scope.addMe = function(){
+	$scope.list.push($scope.hey);
+};
+$scope.subMe = function(){
+	$scope.list.pop($scope.hey);
+};
+}
+demoApp1.controller(controllers);
+
+</script>
+<h1>I am loaded<h1>
+</body>
+
+</html>
